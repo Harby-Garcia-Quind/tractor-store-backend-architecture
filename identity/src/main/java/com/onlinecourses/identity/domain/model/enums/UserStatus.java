@@ -1,5 +1,6 @@
-package com.onlinecourses.identity.domain.enums;
+package com.onlinecourses.identity.domain.model.enums;
 
 public enum UserStatus {
-    ACTIVE, INACTIVE
+    ACTIVE,
+    INACTIVE
 }

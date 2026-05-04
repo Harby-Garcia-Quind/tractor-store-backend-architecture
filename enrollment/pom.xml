@@ -10,11 +10,21 @@
     </parent>
 
     <artifactId>enrollment</artifactId>
+    <packaging>jar</packaging>
 
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>com.onlinecourses</groupId>
+            <artifactId>identity</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.onlinecourses</groupId>
+            <artifactId>catalog</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

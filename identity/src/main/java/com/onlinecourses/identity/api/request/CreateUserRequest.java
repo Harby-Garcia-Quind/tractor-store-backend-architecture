@@ -1,4 +1,10 @@
 package com.onlinecourses.identity.api.request;
 
-public record CreateUserRequest() {
+import com.onlinecourses.identity.domain.model.enums.UserRole;
+
+public record CreateUserRequest(
+        String fullName,
+        String email,
+        UserRole role
+) {
 }

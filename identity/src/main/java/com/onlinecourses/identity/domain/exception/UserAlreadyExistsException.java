@@ -1,4 +1,9 @@
 package com.onlinecourses.identity.domain.exception;
 
-public class UserAlreadyExistsException {
+public class UserAlreadyExistsException extends RuntimeException{
+
+    public UserAlreadyExistsException(String email) {
+        super("Ya existe un usuario registrado con el email: " + email);
+    }
+
 }

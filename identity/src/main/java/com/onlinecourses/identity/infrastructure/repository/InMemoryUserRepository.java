@@ -3,6 +3,7 @@ package com.onlinecourses.identity.infrastructure.repository;
 import com.onlinecourses.identity.application.port.UserRepository;
 import com.onlinecourses.identity.domain.model.User;
 import com.onlinecourses.identity.domain.model.enums.UserStatus;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Repository
+@Profile("memory")
 public class InMemoryUserRepository implements UserRepository {
 
     private final Map<String, User> usersByEmail = new HashMap<>();

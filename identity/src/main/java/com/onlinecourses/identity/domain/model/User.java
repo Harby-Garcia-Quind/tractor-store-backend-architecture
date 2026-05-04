@@ -43,6 +43,24 @@ public class User {
         );
     }
 
+    public static User rehydrate(
+            UUID id,
+            String fullName,
+            String email,
+            UserRole role,
+            UserStatus status,
+            LocalDateTime createdAt
+    ) {
+        return new User(
+                id,
+                fullName,
+                new Email(email),
+                role,
+                status,
+                createdAt
+        );
+    }
+
 
     public UUID getId() {
         return id;

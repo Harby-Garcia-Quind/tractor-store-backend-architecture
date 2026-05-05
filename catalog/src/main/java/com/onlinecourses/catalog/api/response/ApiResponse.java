@@ -27,6 +27,6 @@ public record ApiResponse<T>(
                 LocalDateTime.now()
         );
 
-    };
+    }
 
 }

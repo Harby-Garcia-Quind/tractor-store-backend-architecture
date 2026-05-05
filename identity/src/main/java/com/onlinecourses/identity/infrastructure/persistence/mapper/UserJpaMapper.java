@@ -6,7 +6,7 @@ import com.onlinecourses.identity.infrastructure.persistence.entity.UserJpaEntit
 public class UserJpaMapper {
     private UserJpaMapper() {}
 
-    public static UserJpaEntity ToEntity(User user) {
+    public static UserJpaEntity toEntity(User user) {
         return new UserJpaEntity(
                 user.getId(),
                 user.getFullName(),

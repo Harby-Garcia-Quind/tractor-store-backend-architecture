@@ -2,7 +2,6 @@ package com.onlinecourses.enrollment.api.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 public record ApiResponse<T>(
         int status,

@@ -40,7 +40,7 @@ public class PostgresUserRepository implements UserRepository {
 
     @Override
     public User save(User user) {
-        UserJpaEntity entity = UserJpaMapper.ToEntity(user);
+        UserJpaEntity entity = UserJpaMapper.toEntity(user);
         UserJpaEntity savedEntity = userJpaRepository.save(entity);
 
         return UserJpaMapper.toDomain(savedEntity);

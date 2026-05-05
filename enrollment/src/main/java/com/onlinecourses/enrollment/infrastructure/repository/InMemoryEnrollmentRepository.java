@@ -2,6 +2,7 @@ package com.onlinecourses.enrollment.infrastructure.repository;
 
 import com.onlinecourses.enrollment.application.port.EnrollmentRepository;
 import com.onlinecourses.enrollment.domain.model.Enrollment;
+import com.onlinecourses.enrollment.domain.model.enums.EnrollmentStatus;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,15 @@ public class InMemoryEnrollmentRepository implements EnrollmentRepository {
     @Override
     public boolean existsByUserIdAndCourseId(UUID userId, UUID courseId) {
         return enrollmentsByUserAndCourse.containsKey(buildKey(userId, courseId));
+    }
+
+    @Override
+    public boolean existsByIdAndStatus(UUID enrollmentId, EnrollmentStatus status) {
+
+        Enrollment enrollment = enrollmentsById.get(enrollmentId);
+
+        return enrollment != null && enrollment.getStatus() == status;
+
     }
 
     @Override

@@ -8,4 +8,6 @@ import java.util.UUID;
 public interface EnrollmentJpaRepository extends JpaRepository<EnrollmentJpaEntity, UUID> {
 
     boolean existsByUserIdAndCourseId(UUID userId, UUID courseId);
+
+    boolean existsByIdAndStatus(UUID enrollmentId, String status);
 }

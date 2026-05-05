@@ -1,7 +1,9 @@
 package com.onlinecourses.enrollment.infrastructure.config;
 
 import com.onlinecourses.catalog.application.api.CatalogModuleApi;
+import com.onlinecourses.enrollment.application.api.EnrollmentModuleApi;
 import com.onlinecourses.enrollment.application.port.EnrollmentRepository;
+import com.onlinecourses.enrollment.application.service.EnrollmentModuleService;
 import com.onlinecourses.enrollment.application.usecase.CreateEnrollmentUseCase;
 import com.onlinecourses.identity.application.api.IdentityModuleApi;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +23,11 @@ public class EnrollmentConfiguration {
                 identityModuleApi,
                 catalogModuleApi
         );
+    }
+
+    @Bean
+    public EnrollmentModuleApi enrollmentModuleApi(EnrollmentRepository enrollmentRepository) {
+        return new EnrollmentModuleService(enrollmentRepository);
     }
 
 

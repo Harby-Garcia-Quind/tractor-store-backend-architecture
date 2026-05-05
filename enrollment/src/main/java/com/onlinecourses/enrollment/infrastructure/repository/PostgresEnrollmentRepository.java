@@ -2,6 +2,7 @@ package com.onlinecourses.enrollment.infrastructure.repository;
 
 import com.onlinecourses.enrollment.application.port.EnrollmentRepository;
 import com.onlinecourses.enrollment.domain.model.Enrollment;
+import com.onlinecourses.enrollment.domain.model.enums.EnrollmentStatus;
 import com.onlinecourses.enrollment.infrastructure.persistence.entity.EnrollmentJpaEntity;
 import com.onlinecourses.enrollment.infrastructure.persistence.mapper.EnrollmentJpaMapper;
 import com.onlinecourses.enrollment.infrastructure.persistence.repository.EnrollmentJpaRepository;
@@ -23,6 +24,11 @@ public class PostgresEnrollmentRepository implements EnrollmentRepository {
     @Override
     public boolean existsByUserIdAndCourseId(UUID userId, UUID courseId) {
         return repository.existsByUserIdAndCourseId(userId, courseId);
+    }
+
+    @Override
+    public boolean existsByIdAndStatus(UUID enrollmentId, EnrollmentStatus status) {
+        return repository.existsByIdAndStatus(enrollmentId,status.name());
     }
 
     @Override

@@ -27,7 +27,6 @@ public class UserController {
                 request.email(),
                 request.role()
         );
-        System.out.println(command);
 
         UserResponse response = createUserUseCase.execute(command);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(

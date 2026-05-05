@@ -17,11 +17,6 @@
         <module>catalog</module>
         <module>enrollment</module>
         <module>billing</module>
-        <module>online-courses-app</module>
-        <module>identity</module>
-        <module>catalog</module>
-        <module>enrollment</module>
-        <module>billing</module>
     </modules>
 
     <properties>

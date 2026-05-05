@@ -1,35 +1,37 @@
-package com.onlinecourses.identity.api.exception;
+package com.onlinecourses.catalog.api.exception;
 
-import com.onlinecourses.identity.api.response.ApiResponse;
-import com.onlinecourses.identity.domain.exception.InvalidEmailException;
-import com.onlinecourses.identity.domain.exception.UserAlreadyExistsException;
+import com.onlinecourses.catalog.api.response.ApiResponse;
+import com.onlinecourses.catalog.domain.exception.CourseAlreadyExistsException;
+import com.onlinecourses.catalog.domain.exception.InvalidCourseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@RestControllerAdvice(basePackages = "com.onlinecourses.identity")
-public class IdentityExceptionHandler {
+@RestControllerAdvice(basePackages = "com.onlinecourses.catalog")
+public class CatalogExceptionHandler {
 
-    @ExceptionHandler(UserAlreadyExistsException.class)
-    public ResponseEntity<ApiResponse<Object>> handleUserAlreadyExists(UserAlreadyExistsException exception) {
+    @ExceptionHandler(CourseAlreadyExistsException.class)
+    public ResponseEntity<ApiResponse<Object>> handleCourseAlreadyExists(CourseAlreadyExistsException exception) {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(ApiResponse.error(
                         HttpStatus.CONFLICT.value(),
-                        "El usuario a registrar ya existe"
-        ));
+                        "El curso a registrar ya existe."
+                ));
     }
 
-    @ExceptionHandler(InvalidEmailException.class)
-    public ResponseEntity<ApiResponse<Object>> handleInvalidEmail(InvalidEmailException exception) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(InvalidCourseException.class)
+    public ResponseEntity<ApiResponse<Object>> handleInvalidCourse(InvalidCourseException exception) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
                 .body(ApiResponse.error(
                         HttpStatus.BAD_REQUEST.value(),
                         exception.getMessage()
-        ));
+                ));
     }
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ApiResponse<Object>> handleInvalidJson(HttpMessageNotReadableException exception) {
         return ResponseEntity

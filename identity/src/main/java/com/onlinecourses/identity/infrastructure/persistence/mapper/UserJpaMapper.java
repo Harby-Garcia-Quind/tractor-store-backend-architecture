@@ -20,7 +20,6 @@ public class UserJpaMapper {
     public static User toDomain(UserJpaEntity entity) {
         return User.rehydrate(
                 entity.getId(),
-
                 entity.getFullName(),
                 entity.getEmail(),
                 entity.getRole(),

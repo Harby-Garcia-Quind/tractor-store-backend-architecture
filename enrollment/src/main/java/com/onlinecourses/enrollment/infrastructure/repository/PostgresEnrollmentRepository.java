@@ -28,7 +28,7 @@ public class PostgresEnrollmentRepository implements EnrollmentRepository {
 
     @Override
     public boolean existsByIdAndStatus(UUID enrollmentId, EnrollmentStatus status) {
-        return repository.existsByIdAndStatus(enrollmentId,status.name());
+        return repository.existsByIdAndStatus(enrollmentId,status);
     }
 
     @Override

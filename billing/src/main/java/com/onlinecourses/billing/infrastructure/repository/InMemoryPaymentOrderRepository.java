@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -20,6 +21,11 @@ public class InMemoryPaymentOrderRepository implements PaymentOrderRepository {
     @Override
     public boolean existsPendingByEnrollmentId(UUID enrollmentId) {
         return pendingPaymentOrdersByEnrollmentId.containsKey(enrollmentId);
+    }
+
+    @Override
+    public Optional<PaymentOrder> findById(UUID id) {
+        return Optional.empty();
     }
 
     @Override

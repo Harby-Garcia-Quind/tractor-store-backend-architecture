@@ -21,4 +21,9 @@ public class EnrollmentModuleService implements EnrollmentModuleApi {
                 EnrollmentStatus.PENDING_PAYMENT
         );
     }
+
+    @Override
+    public void activateEnrollment(UUID enrollmentId) {
+
+    }
 }

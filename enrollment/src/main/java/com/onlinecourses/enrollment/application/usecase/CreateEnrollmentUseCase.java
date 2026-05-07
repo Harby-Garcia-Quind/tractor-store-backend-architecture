@@ -2,6 +2,7 @@ package com.onlinecourses.enrollment.application.usecase;
 
 import com.onlinecourses.catalog.application.api.CatalogModuleApi;
 import com.onlinecourses.enrollment.application.command.CreateEnrollmentCommand;
+import com.onlinecourses.enrollment.application.port.EnrollmentPublisher;
 import com.onlinecourses.enrollment.application.port.EnrollmentRepository;
 import com.onlinecourses.enrollment.application.response.EnrollmentResponse;
 import com.onlinecourses.enrollment.domain.exception.CourseNotAvailableForEnrollmentException;
@@ -10,21 +11,25 @@ import com.onlinecourses.enrollment.domain.exception.UserNotAvailableForEnrollme
 import com.onlinecourses.enrollment.domain.model.Enrollment;
 import com.onlinecourses.identity.application.api.IdentityModuleApi;
 
+import java.math.BigDecimal;
+
 
 public class CreateEnrollmentUseCase {
 
     private final EnrollmentRepository enrollmentRepository;
     private final IdentityModuleApi identityModuleApi;
     private final CatalogModuleApi catalogModuleApi;
+    private final EnrollmentPublisher enrollmentPublisher;
 
     public CreateEnrollmentUseCase(
             EnrollmentRepository enrollmentRepository,
             IdentityModuleApi identityModuleApi,
-            CatalogModuleApi catalogModuleApi
+            CatalogModuleApi catalogModuleApi, EnrollmentPublisher enrollmentPublisher
     ) {
         this.enrollmentRepository = enrollmentRepository;
         this.identityModuleApi = identityModuleApi;
         this.catalogModuleApi = catalogModuleApi;
+        this.enrollmentPublisher = enrollmentPublisher;
     }
 
     public EnrollmentResponse execute(CreateEnrollmentCommand command) {
@@ -36,6 +41,7 @@ public class CreateEnrollmentUseCase {
         );
 
         Enrollment savedEnrollment = enrollmentRepository.save(enrollment);
+        enrollmentPublisher.publishEnrollmentCreatedEvent(savedEnrollment.getId(), new BigDecimal(5000));
 
         return EnrollmentResponse.fromDomain(savedEnrollment);
 

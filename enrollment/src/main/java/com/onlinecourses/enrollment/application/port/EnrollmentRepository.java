@@ -6,8 +6,12 @@ import com.onlinecourses.enrollment.domain.model.enums.EnrollmentStatus;
 import java.util.UUID;
 
 public interface EnrollmentRepository {
+
     boolean existsByUserIdAndCourseId(UUID userId, UUID courseId);
+
     boolean existsByIdAndStatus(UUID enrollmentId, EnrollmentStatus status);
+
+    void activateEnrollment(UUID enrollmentId);
 
     Enrollment save(Enrollment enrollment);
 }

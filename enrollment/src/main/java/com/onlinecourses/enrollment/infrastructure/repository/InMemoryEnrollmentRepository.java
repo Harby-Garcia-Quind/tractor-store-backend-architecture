@@ -32,6 +32,11 @@ public class InMemoryEnrollmentRepository implements EnrollmentRepository {
     }
 
     @Override
+    public void activateEnrollment(UUID enrollmentId) {
+
+    }
+
+    @Override
     public Enrollment save(Enrollment enrollment) {
         enrollmentsById.put(enrollment.getId(), enrollment);
         enrollmentsByUserAndCourse.put(

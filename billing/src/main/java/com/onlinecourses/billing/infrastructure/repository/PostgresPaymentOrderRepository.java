@@ -9,6 +9,7 @@ import com.onlinecourses.billing.infrastructure.persistence.repository.PaymentOr
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -24,6 +25,22 @@ public class PostgresPaymentOrderRepository implements PaymentOrderRepository {
     @Override
     public boolean existsPendingByEnrollmentId(UUID enrollmentId) {
         return paymentOrderJpaRepository.existsByEnrollmentIdAndStatus(enrollmentId, PaymentOrderStatus.PENDING);
+    }
+
+    @Override
+    public Optional<PaymentOrder> findById(UUID id) {
+//        Optional<PaymentOrderJpaEntity> entityOptional = paymentOrderJpaRepository.findById(id);
+//
+//        if (entityOptional.isPresent()) {
+//            PaymentOrderJpaEntity entity = entityOptional.get();
+//            PaymentOrder domain = PaymentOderJpaMapper.toDomain(entity);
+//
+//            return Optional.of(domain);
+//        }
+//
+//        return Optional.empty();
+
+        return paymentOrderJpaRepository.findById(id).map(PaymentOderJpaMapper::toDomain);
     }
 
     @Override

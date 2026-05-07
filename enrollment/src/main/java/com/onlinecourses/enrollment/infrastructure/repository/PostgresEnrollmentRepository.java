@@ -1,5 +1,6 @@
 package com.onlinecourses.enrollment.infrastructure.repository;
 
+import com.onlinecourses.enrollment.application.port.EnrollmentPublisher;
 import com.onlinecourses.enrollment.application.port.EnrollmentRepository;
 import com.onlinecourses.enrollment.domain.model.Enrollment;
 import com.onlinecourses.enrollment.domain.model.enums.EnrollmentStatus;
@@ -29,6 +30,11 @@ public class PostgresEnrollmentRepository implements EnrollmentRepository {
     @Override
     public boolean existsByIdAndStatus(UUID enrollmentId, EnrollmentStatus status) {
         return repository.existsByIdAndStatus(enrollmentId,status);
+    }
+
+    @Override
+    public void activateEnrollment(UUID enrollmentId) {
+
     }
 
     @Override

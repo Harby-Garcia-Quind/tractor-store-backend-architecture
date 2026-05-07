@@ -5,17 +5,35 @@ import com.onlinecourses.billing.api.response.ApiResponse;
 import com.onlinecourses.billing.application.command.CreatePaymentOrderCommand;
 import com.onlinecourses.billing.application.response.PaymentOrderResponse;
 import com.onlinecourses.billing.application.usecase.CreatePaymentOrderUseCase;
+import com.onlinecourses.billing.application.usecase.PayPaymentOrderUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/payment-orders")
 public class PaymentOrderController {
     private final CreatePaymentOrderUseCase createPaymentOrderUseCase;
+    private final PayPaymentOrderUseCase payPaymentOrderUseCase;
 
-    public PaymentOrderController(CreatePaymentOrderUseCase createPaymentOrderUseCase) {
+    public PaymentOrderController(CreatePaymentOrderUseCase createPaymentOrderUseCase, PayPaymentOrderUseCase payPaymentOrderUseCase) {
         this.createPaymentOrderUseCase = createPaymentOrderUseCase;
+        this.payPaymentOrderUseCase = payPaymentOrderUseCase;
+    }
+
+    @PostMapping("/{paymentOrderId}/pay")
+    public ResponseEntity<ApiResponse<PaymentOrderResponse>> payPaymentOrder(
+            @PathVariable("paymentOrderId") UUID paymentOrderId
+    ) {
+        PaymentOrderResponse response = payPaymentOrderUseCase.execute(paymentOrderId);
+
+        return ResponseEntity.ok(ApiResponse.success(
+                HttpStatus.ACCEPTED.value(),
+                "Se ha actualizado la orden de pago con éxito" + response.status(),
+                response
+        ));
     }
 
     @PostMapping

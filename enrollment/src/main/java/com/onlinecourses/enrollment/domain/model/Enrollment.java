@@ -22,6 +22,15 @@ public class Enrollment {
         this.createdAt = createdAt;
     }
 
+    public void changeStatusActive() {
+        if(this.status != EnrollmentStatus.PENDING_PAYMENT) {
+            throw new InvalidEnrollmentException("El estado no puede ser cambiado");
+        }
+        this.status = EnrollmentStatus.ACTIVE;
+    }
+
+
+
     public static Enrollment create(UUID userId, UUID courseId) {
         validate(userId,courseId);
 

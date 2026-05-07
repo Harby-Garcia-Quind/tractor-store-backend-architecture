@@ -10,6 +10,7 @@ import com.onlinecourses.enrollment.infrastructure.persistence.repository.Enroll
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -33,8 +34,17 @@ public class PostgresEnrollmentRepository implements EnrollmentRepository {
     }
 
     @Override
-    public void activateEnrollment(UUID enrollmentId) {
+    public Optional<Enrollment> findById(UUID enrollmentId) {
+        Optional<EnrollmentJpaEntity> entityOptional = repository.findById(enrollmentId);
 
+        if (entityOptional.isPresent()) {
+            EnrollmentJpaEntity entity = entityOptional.get();
+            Enrollment domain = EnrollmentJpaMapper.toDomain(entity);
+            return Optional.of(domain);
+
+        }
+
+        return Optional.empty();
     }
 
     @Override

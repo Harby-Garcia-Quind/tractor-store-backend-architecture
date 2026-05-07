@@ -2,6 +2,8 @@ package com.onlinecourses.enrollment.application.service;
 
 import com.onlinecourses.enrollment.application.api.EnrollmentModuleApi;
 import com.onlinecourses.enrollment.application.port.EnrollmentRepository;
+import com.onlinecourses.enrollment.domain.exception.EnrollmentNotFoundException;
+import com.onlinecourses.enrollment.domain.model.Enrollment;
 import com.onlinecourses.enrollment.domain.model.enums.EnrollmentStatus;
 
 import java.util.UUID;
@@ -24,6 +26,13 @@ public class EnrollmentModuleService implements EnrollmentModuleApi {
 
     @Override
     public void activateEnrollment(UUID enrollmentId) {
+        Enrollment enrollment = enrollmentRepository
+                .findById(enrollmentId)
+                .orElseThrow(() -> new EnrollmentNotFoundException(enrollmentId));
+
+        enrollment.changeStatusActive();
+
+        enrollmentRepository.save(enrollment);
 
     }
 }

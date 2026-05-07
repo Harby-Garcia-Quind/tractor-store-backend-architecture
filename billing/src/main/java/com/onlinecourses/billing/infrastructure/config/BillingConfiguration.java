@@ -20,8 +20,11 @@ public class BillingConfiguration {
     }
 
     @Bean
-    public PayPaymentOrderUseCase payPaymentOrderUseCase(PaymentOrderRepository paymentOrderRepository) {
-        return new PayPaymentOrderUseCase(paymentOrderRepository);
+    public PayPaymentOrderUseCase payPaymentOrderUseCase(PaymentOrderRepository paymentOrderRepository, EnrollmentModuleApi enrollmentModuleApi) {
+        return new PayPaymentOrderUseCase(
+                paymentOrderRepository,
+                enrollmentModuleApi
+        );
     }
 
 

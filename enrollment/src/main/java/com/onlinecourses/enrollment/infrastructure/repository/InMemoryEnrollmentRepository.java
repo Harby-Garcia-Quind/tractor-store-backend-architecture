@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -32,8 +33,9 @@ public class InMemoryEnrollmentRepository implements EnrollmentRepository {
     }
 
     @Override
-    public void activateEnrollment(UUID enrollmentId) {
-
+    public Optional<Enrollment> findById(UUID enrollmentId) {
+        Enrollment enrollment = enrollmentsById.get(enrollmentId);
+        return Optional.of(enrollment);
     }
 
     @Override

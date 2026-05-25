@@ -1,7 +1,7 @@
 package com.onlinecourses.billing.api.controller;
 
 import com.onlinecourses.billing.api.request.CreatePaymentOrderRequest;
-import com.onlinecourses.billing.api.response.ApiResponse;
+import com.onlinecourses.shared.api.response.ApiResponse;
 import com.onlinecourses.billing.application.command.CreatePaymentOrderCommand;
 import com.onlinecourses.billing.application.response.PaymentOrderResponse;
 import com.onlinecourses.billing.application.usecase.CreatePaymentOrderUseCase;
@@ -30,7 +30,7 @@ public class PaymentOrderController {
         PaymentOrderResponse response = payPaymentOrderUseCase.execute(paymentOrderId);
 
         return ResponseEntity.ok(ApiResponse.success(
-                HttpStatus.ACCEPTED.value(),
+                HttpStatus.OK.value(),
                 "Se ha actualizado la orden de pago con éxito" + response.status(),
                 response
         ));
@@ -38,10 +38,9 @@ public class PaymentOrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ApiResponse<PaymentOrderResponse>> createPaymentOrder(@RequestBody CreatePaymentOrderRequest request) {
-
-        System.out.println("Request enrollmentId: " + request.enrollmentId());
-        System.out.println("Request amount: " + request.amount());
+    public ResponseEntity<ApiResponse<PaymentOrderResponse>> createPaymentOrder(
+            @RequestBody CreatePaymentOrderRequest request
+    ) {
 
         CreatePaymentOrderCommand command = new CreatePaymentOrderCommand(
                 request.enrollmentId(),

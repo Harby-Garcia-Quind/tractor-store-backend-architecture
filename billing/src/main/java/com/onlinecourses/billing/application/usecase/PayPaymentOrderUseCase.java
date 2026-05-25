@@ -5,6 +5,7 @@ import com.onlinecourses.billing.application.response.PaymentOrderResponse;
 import com.onlinecourses.billing.domain.exception.PaymentOrderNotFoundException;
 import com.onlinecourses.billing.domain.model.PaymentOrder;
 import com.onlinecourses.enrollment.application.api.EnrollmentModuleApi;
+import jakarta.transaction.Transactional;
 
 import java.util.UUID;
 
@@ -18,6 +19,7 @@ public class PayPaymentOrderUseCase {
         this.enrollmentModuleApi = enrollmentModuleApi;
     }
 
+    @Transactional
     public PaymentOrderResponse execute (UUID paymentOrderId) {
         PaymentOrder paymentOrder = paymentOrderRepository
                 .findById(paymentOrderId)

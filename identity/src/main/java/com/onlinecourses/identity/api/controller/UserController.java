@@ -1,7 +1,7 @@
 package com.onlinecourses.identity.api.controller;
 
 import com.onlinecourses.identity.api.request.CreateUserRequest;
-import com.onlinecourses.identity.api.response.ApiResponse;
+import com.onlinecourses.shared.api.response.ApiResponse;
 import com.onlinecourses.identity.application.command.CreateUserCommand;
 import com.onlinecourses.identity.application.response.UserResponse;
 import com.onlinecourses.identity.application.usecase.CreateUserUseCase;

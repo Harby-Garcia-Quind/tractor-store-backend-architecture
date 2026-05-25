@@ -1,6 +1,6 @@
 package com.onlinecourses.catalog.api.exception;
 
-import com.onlinecourses.catalog.api.response.ApiResponse;
+import com.onlinecourses.shared.api.response.ApiResponse;
 import com.onlinecourses.catalog.domain.exception.CourseAlreadyExistsException;
 import com.onlinecourses.catalog.domain.exception.InvalidCourseException;
 import org.springframework.http.HttpStatus;

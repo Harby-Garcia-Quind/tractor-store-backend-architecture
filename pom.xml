@@ -12,6 +12,7 @@
     <name>online-courses</name>
 
     <modules>
+        <module>shared</module>
         <module>online-courses-app</module>
         <module>identity</module>
         <module>catalog</module>

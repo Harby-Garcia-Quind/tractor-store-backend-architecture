@@ -6,10 +6,7 @@ import com.onlinecourses.enrollment.domain.model.enums.EnrollmentStatus;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Repository
 @Profile("memory")
@@ -36,6 +33,11 @@ public class InMemoryEnrollmentRepository implements EnrollmentRepository {
     public Optional<Enrollment> findById(UUID enrollmentId) {
         Enrollment enrollment = enrollmentsById.get(enrollmentId);
         return Optional.of(enrollment);
+    }
+
+    @Override
+    public List<Enrollment> findByUserIdAndStatus(UUID userId, EnrollmentStatus status) {
+        return List.of();
     }
 
     @Override

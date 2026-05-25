@@ -1,6 +1,6 @@
 package com.onlinecourses.enrollment.api.exception;
 
-import com.onlinecourses.enrollment.api.response.ApiResponse;
+import com.onlinecourses.shared.api.response.ApiResponse;
 import com.onlinecourses.enrollment.domain.exception.CourseNotAvailableForEnrollmentException;
 import com.onlinecourses.enrollment.domain.exception.EnrollmentAlreadyExistsException;
 import com.onlinecourses.enrollment.domain.exception.InvalidEnrollmentException;

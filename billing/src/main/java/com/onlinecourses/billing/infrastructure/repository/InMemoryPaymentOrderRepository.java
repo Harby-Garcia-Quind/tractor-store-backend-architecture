@@ -6,10 +6,7 @@ import com.onlinecourses.billing.domain.model.enums.PaymentOrderStatus;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Repository
 @Profile("memory")
@@ -32,8 +29,6 @@ public class InMemoryPaymentOrderRepository implements PaymentOrderRepository {
     public PaymentOrder save(PaymentOrder paymentOrder) {
         paymentOrdersById.put(paymentOrder.getId(), paymentOrder);
 
-        System.out.println(paymentOrder.getStatus());
-
         if (paymentOrder.getStatus() == PaymentOrderStatus.PENDING) {
             pendingPaymentOrdersByEnrollmentId.put(
                     paymentOrder.getEnrollmentId(),
@@ -42,5 +37,10 @@ public class InMemoryPaymentOrderRepository implements PaymentOrderRepository {
         }
 
         return paymentOrder;
+    }
+
+    @Override
+    public List<PaymentOrder> findByEnrollmentIdAndStatus(UUID enrollmentId, PaymentOrderStatus status) {
+        return List.of();
     }
 }

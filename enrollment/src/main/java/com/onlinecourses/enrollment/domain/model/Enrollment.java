@@ -29,7 +29,12 @@ public class Enrollment {
         this.status = EnrollmentStatus.ACTIVE;
     }
 
-
+    public void changeStatusCancelled() {
+        if(this.status == EnrollmentStatus.CANCELLED) {
+            throw new InvalidEnrollmentException("El estado no puede ser cambiado de" + this.getStatus() + " a " + EnrollmentStatus.CANCELLED);
+        }
+        this.status = EnrollmentStatus.CANCELLED;
+    }
 
     public static Enrollment create(UUID userId, UUID courseId) {
         validate(userId,courseId);

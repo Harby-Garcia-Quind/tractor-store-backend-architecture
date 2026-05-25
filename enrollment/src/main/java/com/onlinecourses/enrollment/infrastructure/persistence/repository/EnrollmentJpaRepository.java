@@ -1,9 +1,11 @@
 package com.onlinecourses.enrollment.infrastructure.persistence.repository;
 
+import com.onlinecourses.enrollment.domain.model.Enrollment;
 import com.onlinecourses.enrollment.domain.model.enums.EnrollmentStatus;
 import com.onlinecourses.enrollment.infrastructure.persistence.entity.EnrollmentJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface EnrollmentJpaRepository extends JpaRepository<EnrollmentJpaEntity, UUID> {
@@ -11,4 +13,6 @@ public interface EnrollmentJpaRepository extends JpaRepository<EnrollmentJpaEnti
     boolean existsByUserIdAndCourseId(UUID userId, UUID courseId);
 
     boolean existsByIdAndStatus(UUID enrollmentId, EnrollmentStatus status);
+
+    List<EnrollmentJpaEntity> findByUserIdAndStatus(UUID userId, EnrollmentStatus status);
 }

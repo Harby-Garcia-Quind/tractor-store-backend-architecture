@@ -1,7 +1,7 @@
 package com.onlinecourses.catalog.api.controller;
 
 import com.onlinecourses.catalog.api.request.CreateCourseRequest;
-import com.onlinecourses.catalog.api.response.ApiResponse;
+import com.onlinecourses.shared.api.response.ApiResponse;
 import com.onlinecourses.catalog.application.command.CreateCourseCommand;
 import com.onlinecourses.catalog.application.response.CourseResponse;
 import com.onlinecourses.catalog.application.usecase.CreateCourseUseCase;

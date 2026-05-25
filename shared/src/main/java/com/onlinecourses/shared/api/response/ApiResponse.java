@@ -1,4 +1,4 @@
-package com.onlinecourses.enrollment.api.response;
+package com.onlinecourses.shared.api.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,7 +9,6 @@ public record ApiResponse<T>(
         T data,
         LocalDateTime timestamp
 ) {
-
     public static <T> ApiResponse<T> success(int status, String message, T data) {
         return new ApiResponse<>(
                 status,
@@ -17,7 +16,6 @@ public record ApiResponse<T>(
                 data,
                 LocalDateTime.now()
         );
-
     }
 
     public static ApiResponse<Object> error(int status, String message) {
@@ -26,7 +24,7 @@ public record ApiResponse<T>(
                 message,
                 List.of(),
                 LocalDateTime.now()
+
         );
     }
-
 }

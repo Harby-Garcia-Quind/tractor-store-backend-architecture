@@ -1,6 +1,6 @@
 package com.onlinecourses.enrollment.infrastructure.repository;
 
-import com.onlinecourses.enrollment.application.port.EnrollmentPublisher;
+//import com.onlinecourses.enrollment.application.port.EnrollmentPublisher;
 import com.onlinecourses.enrollment.application.port.EnrollmentRepository;
 import com.onlinecourses.enrollment.domain.model.Enrollment;
 import com.onlinecourses.enrollment.domain.model.enums.EnrollmentStatus;
@@ -10,6 +10,7 @@ import com.onlinecourses.enrollment.infrastructure.persistence.repository.Enroll
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,6 +46,14 @@ public class PostgresEnrollmentRepository implements EnrollmentRepository {
         }
 
         return Optional.empty();
+    }
+
+    @Override
+    public List<Enrollment> findByUserIdAndStatus(UUID userId, EnrollmentStatus status) {
+        return repository.findByUserIdAndStatus(userId, status)
+                .stream()
+                .map(EnrollmentJpaMapper::toDomain)
+                .toList();
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.onlinecourses.enrollment.application.port;
 import com.onlinecourses.enrollment.domain.model.Enrollment;
 import com.onlinecourses.enrollment.domain.model.enums.EnrollmentStatus;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -13,6 +14,8 @@ public interface EnrollmentRepository {
     boolean existsByIdAndStatus(UUID enrollmentId, EnrollmentStatus status);
 
     Optional<Enrollment> findById(UUID enrollmentId);
+
+    List<Enrollment> findByUserIdAndStatus(UUID userId, EnrollmentStatus status);
 
     Enrollment save(Enrollment enrollment);
 }

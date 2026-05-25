@@ -9,6 +9,7 @@ import com.onlinecourses.billing.infrastructure.persistence.repository.PaymentOr
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,11 +48,15 @@ public class PostgresPaymentOrderRepository implements PaymentOrderRepository {
     public PaymentOrder save(PaymentOrder paymentOrder) {
         PaymentOrderJpaEntity entity = PaymentOderJpaMapper.toEntity(paymentOrder);
 
-        System.out.println(paymentOrder.getId());
-
         PaymentOrderJpaEntity savedEntity = paymentOrderJpaRepository.save(entity);
 
         return PaymentOderJpaMapper.toDomain(savedEntity);
 
     }
+
+    @Override
+    public List<PaymentOrder> findByEnrollmentIdAndStatus(UUID enrollmentId, PaymentOrderStatus status) {
+        return List.of();
+    }
+
 }

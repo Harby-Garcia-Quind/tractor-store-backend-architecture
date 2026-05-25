@@ -1,6 +1,6 @@
 package com.onlinecourses.identity.api.exception;
 
-import com.onlinecourses.identity.api.response.ApiResponse;
+import com.onlinecourses.shared.api.response.ApiResponse;
 import com.onlinecourses.identity.domain.exception.InvalidEmailException;
 import com.onlinecourses.identity.domain.exception.UserAlreadyExistsException;
 import org.springframework.http.HttpStatus;
